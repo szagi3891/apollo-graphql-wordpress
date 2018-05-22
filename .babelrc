@@ -1,0 +1,13 @@
+{
+    "plugins": [
+        "babel-plugin-transform-flow-strip-types",
+        "babel-plugin-transform-class-properties"
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "babel-plugin-transform-es2015-modules-commonjs"
+            ]
+        }
+    }
+}
