@@ -40,7 +40,7 @@ app.use((req, res) => {
     const client = new ApolloClient({
         ssrMode: true,
         link: createHttpLink({
-            uri: 'https://graphql-pokemon.now.sh/',
+            uri: 'https://api.wpgraphql.com/graphql',
             credentials: 'same-origin',
             headers: {
                 cookie: req.header('Cookie'),
@@ -79,6 +79,10 @@ app.use((req, res) => {
 
         res.status(200);
         res.send(`<!doctype html>\n${html_layout}`);
+        res.end();
+    }).catch((error) => {
+        res.status(500);
+        res.send(`error 500 => ${error.toString()}`);
         res.end();
     });
 });

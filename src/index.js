@@ -25,7 +25,7 @@ if (root) {
         hydrate(data_ids);
 
         const client = new ApolloClient({
-            link: createHttpLink({ uri: "https://graphql-pokemon.now.sh/" }),
+            link: createHttpLink({ uri: "https://api.wpgraphql.com/graphql" }),     //http://playground.wpgraphql.com
             cache: new InMemoryCache().restore(data_init)
         });
 

@@ -7,28 +7,45 @@ import styled from 'react-emotion';
 
 import logo_src from './logo.png';
 
+/*
+https://wpgraphql.com/
+https://github.com/wp-graphql/wp-graphql/wiki/Example-Queries
+https://playground.wpgraphql.com/#/list-of-posts
+https://playground.wpgraphql.com/#/single-post
+*/
+
 type PropsType = {|
 |};
 
 const query = gql`{
-    pokemons(first: 10) {
-        id,
-        number,
-        name
+    posts {
+      edges {
+        node {
+          id,
+          title,
+          date
+        }
+      }
     }
-}
+  }
 `;  
 
 const queryItem = gql`
-    query pokemon($id: String!) {
-        pokemon(id: $id) {
+    query post($id: ID!) {
+        post(id: $id) {
             id,
-            number,
-            name,
-            image
+            title,
+            date,
+            content(format:RENDERED)
         }
     }
 `;
+
+/*
+author {
+email
+}
+*/
 
 const Img = styled('img')`
     width: 200px;
@@ -36,18 +53,18 @@ const Img = styled('img')`
 `;
 
 const listItem = (itemData: Object) => {
-    const { id, number, name } = itemData;
+    const { id, title, date } = itemData.node;
     return (
         <div key={id}>
             <Link to={`/details/${id}`}>
-                {`${id} - ${number} - ${name}`}
+                {title} - {date}
             </Link>
         </div>
     );
 };
 
 const List = () => (
-    <Query query={query}>
+    <Query query={query} pollInterval={5000}>
         {({ loading, error, data }) => {
             if (loading) {
                 return <p>Loading...</p>;
@@ -57,7 +74,7 @@ const List = () => (
                 return <p>Error :(</p>
             };
 
-            return data.pokemons.map(listItem);
+            return data.posts.edges.map(listItem);
         }}
     </Query>
 );
@@ -68,23 +85,17 @@ const Detail = (props: {id: string}) => {
     return (
         <React.Fragment>
             <Link to="/">Back</Link>
-            <Query query={queryItem} variables={{ id }} /* pollInterval={2000} */ >
+            <Query query={queryItem} variables={{ id }}  >
                 {({ loading, error, data }) => {
                     if (loading) return <div>Loading...</div>;
                     if (error) return <div>Error! {error.message}</div>;
 
-                    if (!data.pokemon) {
-                        return '404...';
-                    }
-
-                    const { id, name, image } = data.pokemon;
+                    const { id, title, data: dataPost, content } = data.post;
 
                     return (
                         <div>
-                            <div>{name} - {id}</div>
-                            <div>
-                                <img src={image} />
-                            </div>
+                            <div>{title} - {id}</div>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
                         </div>
                     );
                 }}
