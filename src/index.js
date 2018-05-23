@@ -25,7 +25,8 @@ if (root) {
         hydrate(data_ids);
 
         const client = new ApolloClient({
-            link: createHttpLink({ uri: "https://api.wpgraphql.com/graphql" }),     //http://playground.wpgraphql.com
+            //link: createHttpLink({ uri: "https://api.wpgraphql.com/graphql" }),
+            link: createHttpLink({ uri: 'http://2upwp.porubis.pl/graphql' }),
             cache: new InMemoryCache().restore(data_init)
         });
 
