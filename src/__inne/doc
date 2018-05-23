@@ -1,0 +1,48 @@
+https://www.apollographql.com/docs/graphql-tools/
+
+
+Batching:
+    https://www.apollographql.com/docs/apollo-server/requests.html#batching
+
+    A batch of queries can be sent by simply sending a JSON-encoded array of queries, e.g.
+
+    [{ query: '{ testString }' }, { query: 'query q2{ test(who: "you" ) }' }];
+
+    If a batch of queries is sent, the response will be an array of GraphQL responses.
+
+
+
+Manifest PWA:
+
+    Works for every user irrespective of the browsers.
+    Responsive, I guess need no further explanation on that.
+    Has to be served only via HTTPS (except for local host), thereby making it secure
+    It gives an app like experience without the need of approvals and uploads to various app stores. You add the app from url directly.
+    Easily installable by just adding it to your homes screen, and then using it as any other app.
+    Offline first experience to allow users to use the app on no or minimal connectivity.
+
+    https://medium.com/progressive-web-apps/react-progressive-web-apps-part-1-1cf381421672
+
+
+
+CacheStorage:
+    https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage
+
+
+Instalacja SW
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw-test/sw.js', {scope: '/sw-test/'})
+        .then(function(reg) {
+            // registration worked
+            console.log('Registration succeeded. Scope is ' + reg.scope);
+        }).catch(function(error) {
+            // registration failed
+            console.log('Registration failed with ' + error);
+        });
+    }
+
+
+generować nowy plik serwiceWorkera z zaszytą listą plików które trzeba zakeszować na starcie serwiceWorkera
+
+https://github.com/Gethyl/ReactPWA/blob/master/basic_react_pwa/myServiceWorker.js
+
