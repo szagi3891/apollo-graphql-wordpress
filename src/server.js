@@ -40,7 +40,8 @@ app.use((req, res) => {
     const client = new ApolloClient({
         ssrMode: true,
         link: createHttpLink({
-            uri: 'https://api.wpgraphql.com/graphql',
+            //uri: 'https://api.wpgraphql.com/graphql',
+            uri: 'http://2upwp.porubis.pl/graphql',
             credentials: 'same-origin',
             headers: {
                 cookie: req.header('Cookie'),
