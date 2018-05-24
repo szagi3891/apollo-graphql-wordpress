@@ -36,6 +36,12 @@ if (root) {
 
         https://github.com/ReactTraining/react-router/issues/5901
         https://github.com/ReactTraining/react-router/pull/5908
+
+        aktualizacja:
+        w wersji 16.4 problem nie powinien występować:
+        https://github.com/ReactTraining/react-router/issues/6072#issuecomment-391557336
+        https://reactjs.org/blog/2018/05/23/react-v-16-4.html
+        lecz nadal występuje
         */
 
         const AppWithRouter = withRouter(App);
