@@ -28,6 +28,9 @@ Manifest PWA:
     https://medium.com/progressive-web-apps/react-progressive-web-apps-part-1-1cf381421672
 
 
+Dodawanie do głównego ekranu:
+    https://developer.mozilla.org/en-US/docs/Web/Manifest
+
 
 CacheStorage:
     https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage
@@ -97,3 +100,4 @@ Szybsza aktualizacja service workerów
 https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer
 https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
 https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker
+
