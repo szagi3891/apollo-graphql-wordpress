@@ -1,6 +1,10 @@
 https://www.apollographql.com/docs/graphql-tools/
 
 
+React i parceljs
+    https://itnext.io/react-with-parcel-99229106dac8
+
+
 Batching:
     https://www.apollographql.com/docs/apollo-server/requests.html#batching
 
@@ -41,8 +45,55 @@ Instalacja SW
         });
     }
 
+Aktualnie aktywny serwice worker
+    navigator.serviceWorker.controller current controlling ServiceWorker for your scope.
+
+    navigator.serviceWorker.controller: ServiceWorker
+
+    ServiceWorker.state Read only
+        Returns the state of the service worker. It returns one of the following values: installing, installed, activating, activated, or redundant.
+
+
 
 generować nowy plik serwiceWorkera z zaszytą listą plików które trzeba zakeszować na starcie serwiceWorkera
 
 https://github.com/Gethyl/ReactPWA/blob/master/basic_react_pwa/myServiceWorker.js
 
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+
+navigator.serviceWorker.getRegistrations().then(registrations => {
+    console.log(registrations);
+});
+
+
+Szybsza aktualizacja service workerów
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+    .then(function(registration) {
+        registration.addEventListener('updatefound', function() {
+        // If updatefound is fired, it means that there's
+        // a new service worker being installed.
+        var installingWorker = registration.installing;
+        console.log('A new service worker is being installed:',
+            installingWorker);
+
+        // You can listen for changes to the installing service worker's
+        // state via installingWorker.onstatechange
+        });
+    })
+    .catch(function(error) {
+        console.log('Service worker registration failed:', error);
+    });
+    } else {
+    console.log('Service workers are not supported.');
+    }
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer
+https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
+https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker
